@@ -1,74 +1,71 @@
 let userBirthYear = prompt("What's your year of birth?");
 
-let currentYear = 2023;
-let replyYear;
+let currentYear = 2023;  
+let userAge;
 
-if (userBirthYear === null || userBirthYear.trim() === "" || isNaN(+userBirthYear) === true) {
-  alert("Шкода, що Ви не захотіли ввести свій рік народження");
-  replyYear = "Ви не захотіли вводити рік вашого народження!";
+if (+userBirthYear >= 1900 && +userBirthYear <= currentYear){
+  userAge = currentYear - parseInt(userBirthYear);
 } else {
-  let userAge;
-  if (+userBirthYear >= 1900 && +userBirthYear <= currentYear) {
-    userAge = currentYear - parseInt(userBirthYear);
-  } else {
-    alert("Шкода, що Ви не захотіли ввести свій СПРАВЖНІЙ рік народження");
-    userAge = "невідомо скільки років";
-  }
-  replyYear = `Вам ${userAge}`;
+  alert("Шкода, що Ви не захотіли ввести свій рік народження");
+  userAge = "невідомо скільки років!";
 }
 
 let userCity = prompt("What city do you live in?");
-let replyCity;
+userCity = userCity === null? null : userCity.trim().toLowerCase();
 
-switch(true) {
-  case (userCity === null || userCity.trim() === "" || !isNaN(+userCity)):
-    alert("Шкода, що Ви не захотіли ввести своє місто");
-    replyCity = "Ви не захотіли вводити місто!";
-  break;
-
-  case (userCity.toLowerCase() === "київ"):
-    replyCity = "Ти живеш у столиці України";
-  break;
-
-  case (userCity.toLowerCase() === "вашингтон"):
-    replyCity = "Ти живеш у столиці Америки";
-  break;
+switch(userCity) {       
+    case ("київ"):
+      userCity = "Ви живете у столиці України";      
+    break;
   
-  case (userCity.toLowerCase() === "лондон"):
-    replyCity = "Ти живеш у столиці Великобританії";
-  break;
+    case ("вашингтон"):
+      userCity = "Ви живете у столиці Америки";
+    break;
+    
+    case ("лондон"):
+      userCity = "Ви живете у столиці Великобританії";
+    break;
 
-  default:
-    replyCity = `Tи живеш у місті ${userCity}`;
-  break;
-}
-
+    case (null):
+    case(""):
+      alert("Шкода, що Ви не захотіли ввести своє місто");
+      userCity = "Ви не захотіли вводити місто!";           
+    break;
+  
+    default:
+      userCity = userCity.charAt(0).toUpperCase() + userCity.slice(1);
+      userCity = `Ви живете у місті ${userCity}`;  
+    break;
+  }
+ 
 let userFavSport = prompt("What is your favorite sport?");
-let replySport;
+userFavSport = userFavSport === null ? null : userFavSport.trim().toLowerCase();
 
-switch(true) {
-  case (userFavSport === null || userFavSport.trim() === "" || !isNaN(+userFavSport)):
-    alert("Шкода, що Ви не захотіли ввести свій вид спорту");
-    replySport = "Ви не захотіли вводити ваш улюблений вид спорту!";
+switch(userFavSport) {
+  case ("баскетбол"):
+    userFavSport = "Круто! Хочеш стати Майклом Джорданом?";
   break;
 
-  case (userFavSport.toLowerCase() === "баскетбол"):
-    replySport = "Круто! Хочеш стати Майклом Джорданом?";
-  break;
-
-  case (userFavSport.toLowerCase() === "футбол"):
-    replySport = "Круто! Хочеш стати Кріштіану Роналду?";
+  case ("футбол"):
+    userFavSport = "Круто! Хочеш стати Кріштіану Роналду?";
   break;
   
-  case (userFavSport.toLowerCase() === "бокс"):
-    replySport = "Круто! Хочеш бути як Мухамед Алі?";
+  case ("бокс"):
+    userFavSport = "Круто! Хочеш бути як Мухамед Алі?";
   break;
+
+  case (null):
+    case(""):
+      alert("Шкода, що Ви не захотіли ввести свій вид спорту");
+      userFavSport = "Ви не захотіли вводити ваш улюблений вид спорту!";           
+    break;
   
   default:
-    replySport = `Ваш улюблений вид спорту це: ${userFavSport}`;
+    userFavSport = userFavSport.charAt(0).toUpperCase() + userFavSport.slice(1);
+    userFavSport = `Ваш улюблений вид спорту це: ${userFavSport}`;
   break;
 }
 
-alert(`${replyYear}, 
-${replyCity}, 
-${replySport}`);
+alert(`Вам ${userAge} 
+${userCity} 
+${userFavSport}`);
